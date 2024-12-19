@@ -1,0 +1,276 @@
+/* กำหนดพื้นหลังของหน้าเว็บ */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F2E6D9; /* พื้นหลังสีครีมเข้มขึ้น */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333; /* สีตัวอักษรเข้มแต่ไม่เกินไป */
+}
+
+/* ตกแต่งส่วนหัวของเว็บ */
+header {
+    background-color: #FFFFFF; /* สีขาว */
+    padding: 50px 20px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid #0288D1; /* เส้นขอบด้านล่างเป็นสีน้ำเงินฟ้า */
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: #0277BD; /* ขอบด้านบนเป็นสีน้ำเงินเข้ม */
+    animation: slideInTop 1s ease-out;
+}
+
+/* เนื้อหาภายในส่วนหัว */
+header .hero {
+    text-align: center;
+}
+
+header h1 {
+    color: #0288D1; /* สีฟ้าสดใส */
+    font-size: 3rem;
+    animation: slideIn 1.5s ease-out;
+}
+
+header p {
+    color: #555; /* สีเทาเข้ม */
+    font-size: 1.1rem;
+    margin: 10px 0;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* ปรับแต่งปุ่ม */
+button {
+    background-color: #0288D1; /* สีฟ้าสดใส */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 2s ease-in-out;
+}
+
+button:hover {
+    background-color: #01579B; /* สีฟ้าหม่นเมื่อ Hover */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(2, 136, 209, 0.6);
+}
+
+/* การตกแต่งส่วนเมนู */
+#menu {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #FFF; /* สีขาว */
+}
+
+#menu h2 {
+    color: #0288D1; /* สีฟ้าสดใส */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    animation: slideIn 1s ease-out;
+}
+
+/* การจัดสไตล์ของรายการเมนู */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 15px 0;
+}
+
+ul li button {
+    background-color: #0288D1; /* สีฟ้าสดใส */
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 2s ease-in-out;
+}
+
+ul li button:hover {
+    background-color: #01579B; /* สีฟ้าหม่นเมื่อ Hover */
+}
+
+/* การตกแต่งส่วนเนื้อหา */
+.content-section {
+    padding: 30px;
+    margin: 20px 0;
+    background-color: #FFFFFF; /* สีขาว */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.content-section:hover {
+    background-color: #E1F5FE; /* สีฟ้าอ่อนเมื่อ Hover */
+}
+
+.content-section h2 {
+    color: #0288D1; /* สีฟ้าสดใส */
+    font-size: 2.3rem;
+    animation: slideIn 1s ease-out;
+}
+
+.content-section p {
+    color: #333;
+    font-size: 1.1rem;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #0288D1; /* ขอบสีฟ้าสดใส */
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #01579B; /* ขอบสีฟ้าหม่นเมื่อ Focus */
+}
+
+/* การจัดแต่งตารางข้อมูล */
+#dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#dataTable th, #dataTable td {
+    padding: 12px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#dataTable th {
+    background-color: #0288D1; /* สีฟ้าสดใส */
+    color: white;
+    font-weight: bold;
+}
+
+#dataTable tr:nth-child(even) {
+    background-color: #B3E5FC; /* สีฟ้าอ่อน */
+}
+
+#dataTable tr:hover {
+    background-color: #81D4FA; /* สีฟ้ากลาง */
+}
+
+/* การจัดแต่ง Popup */
+#resultPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: auto;
+}
+
+.popup-content {
+    background-color: #FFFFFF;
+    margin: 15% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content h2 {
+    font-size: 2rem;
+    color: #0288D1; /* สีฟ้าสดใส */
+}
+
+.popup-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.popup-content button {
+    background-color: #0288D1; /* สีฟ้าสดใส */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background-color: #01579B; /* สีฟ้าหม่นเมื่อ Hover */
+}
+
+.popup-content button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(2, 136, 209, 0.6);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInTop {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.popup-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.popup-content th,
+.popup-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.popup-content th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}

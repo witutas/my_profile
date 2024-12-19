@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style for the popup */
+        #resultPopup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .popup-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main id="menu">
+        <h2>เมนู</h2>
+        <ul>
+            <li><button onclick="showContent('info')">1. ข้อมูลส่วนตัว</button></li>
+            <li><button onclick="showContent('works')">2. Game</button></li>
+            
+        </ul>
+    </main>
+
+    <section id="content">
+        <div id="info" class="content-section" style="display: none;">
+            <h2>ข้อมูลส่วนตัว</h2>
+            <p>ชื่อ: นายวิทูทรรศน์ ถิ่นพระบาท</p>
+            <p>อายุ: 19 ปี</p>
+            <p>กรุ๊ปเลือด : AB</p>
+            <p>สัญชาติ : ไทย</p>
+            <p>เชื้อชาติ : ไทย</p>
+            <p>ศาสนา : พุทธ</p>
+        </div>
+
+        <div id="works" class="content-section" style="display: none;">
+            <h2>Game</h2>
+            <button onclick="window.location.href='wheel.html'">spiner</button>
+        </div>
+
+        <div id="dataSci" class="content-section" style="display: none;">
+            <h2>Data Science Results</h2>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Product</th>
+                        <th>Purchase Value</th>
+                        <th>Purchase Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample Data -->
+                    <tr>
+                        <td contenteditable="true">12345</td>
+                        <td contenteditable="true">29</td>
+                        <td contenteditable="true">Male</td>
+                        <td contenteditable="true">Laptop</td>
+                        <td contenteditable="true">$1,200</td>
+                        <td contenteditable="true">2024-01-15</td>
+                        <td><button onclick="saveRow(this)">บันทึก</button></td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">67890</td>
+                        <td contenteditable="true">34</td>
+                        <td contenteditable="true">Female</td>
+                        <td contenteditable="true">Smartphone</td>
+                        <td contenteditable="true">$800</td>
+                        <td contenteditable="true">2024-02-20</td>
+                        <td><button onclick="saveRow(this)">บันทึก</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="addRow()">เพิ่มข้อมูลใหม่</button>
+            <button onclick="showPopup()">ดูข้อมูลทั้งหมด</button>
+            <!-- New button to show data in a popup -->
+            <button onclick="showDataInPopup()">ต่อไป</button>
+        </div>
+    </section>
+
+    <!-- Popup for showing all data -->
+    <div id="resultPopup">
+        <div class="popup-content">
+            <h2>Data Science เบื้องต้น</h2>
+            <p>ข้อมูลตัวอย่างการวิเคราะห์ข้อมูลทางด้าน Data Science:</p>
+            <table id="dataSciTable">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Average Age</td>
+                        <td>31.5</td>
+                    </tr>
+                    <tr>
+                        <td>Total Purchase Value</td>
+                        <td>$2,000</td>
+                    </tr>
+                    <tr>
+                        <td>Most Purchased Product</td>
+                        <td>Laptop</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="closePopup()">ปิด</button>
+        </div>
+    </div>
+
+    <script>
+        function showContent(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function addRow() {
+            const table = document.getElementById('dataTable').querySelector('tbody');
+            const newRow = `
+                <tr>
+                    <td contenteditable="true">New ID</td>
+                    <td contenteditable="true">Age</td>
+                    <td contenteditable="true">Gender</td>
+                    <td contenteditable="true">Product</td>
+                    <td contenteditable="true">Value</td>
+                    <td contenteditable="true">Date</td>
+                    <td><button onclick="saveRow(this)">บันทึก</button></td>
+                </tr>`;
+            table.insertAdjacentHTML('beforeend', newRow);
+        }
+
+        function saveRow(button) {
+            alert('ข้อมูลถูกบันทึกแล้ว!');
+        }
+
+        function showPopup() {
+            const allDataTable = document.getElementById('allDataTable').querySelector('tbody');
+            const currentTable = document.getElementById('dataTable').querySelector('tbody').cloneNode(true);
+            allDataTable.innerHTML = currentTable.innerHTML;
+            document.getElementById('resultPopup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('resultPopup').style.display = 'none';
+        }
+
+        // Function to show Data Science basic information in a popup when the "ต่อไป" button is clicked
+        function showDataInPopup() {
+            const dataSciTable = document.getElementById('dataSciTable').querySelector('tbody');
+            const dataScienceInfo = `
+                <tr>
+                    <td>Average Age</td>
+                    <td>31.5</td>
+                </tr>
+                <tr>
+                    <td>Total Purchase Value</td>
+                    <td>$2,000</td>
+                </tr>
+                <tr>
+                    <td>Most Purchased Product</td>
+                    <td>Laptop</td>
+                </tr>`;
+            dataSciTable.innerHTML = dataScienceInfo;
+            document.getElementById('resultPopup').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

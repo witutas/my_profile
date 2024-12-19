@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Machine</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #007bff, #6a11cb);
+            font-family: Arial, sans-serif;
+        }
+
+        .slot-machine-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slot-reels {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        .reel {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f2f2f2;
+            border: 3px solid #333;
+            border-radius: 10px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease-out;
+        }
+
+        .spinning {
+            animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+
+        .spin-button {
+            padding: 15px 30px;
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .spin-button:hover {
+            background: #0056b3;
+        }
+
+        .result-message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="slot-machine-container">
+        <div class="slot-reels">
+            <div class="reel" id="reel1">🍒</div>
+            <div class="reel" id="reel2">🍋</div>
+            <div class="reel" id="reel3">🍉</div>
+        </div>
+        <button class="spin-button" onclick="spinReels()">Spin</button>
+        <button id="nextButton" onclick="window.location.href='menu.html'">back</button>
+        <div class="result-message" id="resultMessage"></div>
+    </div>
+
+    <script>
+        // รายการรูปภาพในสล็อตแมชชีน
+        const symbols = ['🍒', '🍋', '🍉', '🍇', '🍊', '🔔', '⭐'];
+
+        function spinReels() {
+            // รีเซ็ตข้อความผลลัพธ์
+            const resultMessage = document.getElementById('resultMessage');
+            resultMessage.textContent = '';
+
+            // รับแต่ละรีลและเพิ่มคลาสการหมุน
+            const reel1 = document.getElementById('reel1');
+            const reel2 = document.getElementById('reel2');
+            const reel3 = document.getElementById('reel3');
+
+            reel1.classList.add('spinning');
+
+            // หยุดการหมุนของแต่ละรีลทีละตัว
+            setTimeout(() => {
+                reel1.classList.remove('spinning');
+                reel1.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+                reel2.classList.add('spinning');
+                setTimeout(() => {
+                    reel2.classList.remove('spinning');
+                    reel2.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+                    reel3.classList.add('spinning');
+                    setTimeout(() => {
+                        reel3.classList.remove('spinning');
+                        reel3.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+                        // ตรวจสอบว่าทั้ง 3 วงล้อมีสัญลักษณ์เหมือนกันหรือไม่
+                        if (reel1.textContent === reel2.textContent && reel2.textContent === reel3.textContent) {
+                            resultMessage.textContent = 'Congratulations! You win! 🎉';
+                            resultMessage.style.color = '#28a745';
+                        } else {
+                            resultMessage.textContent = 'Try Again!';
+                            resultMessage.style.color = '#dc3545';
+                        }
+                    }, 1000); // หยุดการหมุนของรีลที่สามหลังจาก 1 วินาที
+                }, 1000); // หยุดการหมุนของรีลที่สองหลังจาก 1 วินาที
+            }, 1000); // หยุดการหมุนของรีลแรกหลังจาก 1 วินาที
+        }
+    </script>
+</body>
+</html>
